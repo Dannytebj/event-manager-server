@@ -22,6 +22,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ];
 
     /**
+     * The validating ruleset.
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'required|string',
+        'email' => 'required|string',
+        'phone_number' => 'string'
+    ];
+
+    /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
