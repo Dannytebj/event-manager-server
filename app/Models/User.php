@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
 use Laravel\Lumen\Auth\Authorizable;
@@ -18,7 +18,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'phone_number'
+        'name', 'email', 'phone_number', 'password'
     ];
 
     /**
@@ -29,7 +29,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public static $rules = [
         'name' => 'required|string',
         'email' => 'required|string',
-        'phone_number' => 'string'
+        'phoneNumber' => 'string'
     ];
 
     /**
@@ -43,10 +43,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function events()
     {
-        $this->hasMany('App\Models\Event');
+        return $this->hasMany('App\Models\Event');
     }
     public function centers()
     {
-        $this->hasMany('App\Models\Center');
+        return $this->hasMany('App\Models\Center');
     }
 }

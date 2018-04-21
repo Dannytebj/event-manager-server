@@ -15,4 +15,11 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->post('auth/login', ['uses' => 'AuthController@authenticate']);
+//$router->post('auth/login', ['uses' => 'AuthController@authenticate']);
+$router->group(['prefix' => 'api/v1'], function ($router) {
+   $router->post('/users/register', 'UsersController@register');
+   $router->post('/users/login', 'AuthController@authenticate');
+});
+$router->group(['middleware' => 'jwt.auth', 'prefix' => 'api/v1'], function ($router) {
+
+});

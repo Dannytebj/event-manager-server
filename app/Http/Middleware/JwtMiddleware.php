@@ -3,16 +3,23 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Exception;
-use App\User;
+use App\Models\User;
 use Firebase\JWT\JWT;
 use Firebase\JWT\ExpiredException;
 
 class JwtMiddleware
 {
-    public function handle($request, Closure, $next, $guard = null)
+    /**
+     * @param $request
+     * @param Closure $
+     * @param $next
+     * @param null $guard
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function handle($request, Closure $next, $guard = null)
     {
         $token = $request->get('token');
-        if(!token) {
+        if(!$token) {
             return response()->json([
                 'error' => 'Token not provided.'
             ], 401);
