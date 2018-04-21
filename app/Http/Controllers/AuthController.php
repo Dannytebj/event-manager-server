@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use Validator;
-use App\User;
+use App\Models\User;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 use Firebase\JWT\ExpiredException;
@@ -17,7 +17,7 @@ class AuthController extends BaseController
     {
         $this->request = $request;
     }
-    protected function jwt(User $user)
+    public static function jwt(User $user)
     {
         $payload = [
             'iss' => "event-manager",
@@ -45,8 +45,14 @@ class AuthController extends BaseController
             ], 404);
         }
         if (Hash::check($this->request->input('password'), $user->password)) {
+            $userDetails = (object) [
+                'name' => $user->name,
+                'email' => $user->email
+            ];
             return response()->json([
-                'token' => $this->jwt($user)
+                'message' => 'Login successful',
+                'token' => $this->jwt($user),
+                'user' => $userDetails
             ], 200);
         }
         return response()->json([
