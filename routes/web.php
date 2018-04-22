@@ -21,5 +21,5 @@ $router->group(['prefix' => 'api/v1'], function ($router) {
    $router->post('/users/login', 'AuthController@authenticate');
 });
 $router->group(['middleware' => 'jwt.auth', 'prefix' => 'api/v1'], function ($router) {
-
+    $router->post('/admin/center/create', 'CentersController@createCenter');
 });

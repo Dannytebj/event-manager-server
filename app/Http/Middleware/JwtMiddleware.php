@@ -18,7 +18,7 @@ class JwtMiddleware
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        $token = $request->get('token');
+        $token = $request->header('token');
         if(!$token) {
             return response()->json([
                 'error' => 'Token not provided.'
