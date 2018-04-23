@@ -19,7 +19,7 @@ class CreateCentersTable extends Migration
             $table->string('address');
             $table->string('capacity');
             $table->string('owner_id')->references('id')->on('users');
-            $table->string('status');
+            $table->string('status')->default(1);
             $table->timestamps();
         });
     }

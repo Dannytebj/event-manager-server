@@ -14,7 +14,13 @@ class Center extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'address', 'capacity', 'owner', 'status'
+        'name', 'address', 'capacity', 'owner_id'
+    ];
+
+    public static $rules = [
+        'name' => 'required|string',
+        'address' => 'required|string',
+        'capacity' => 'required|integer',
     ];
 
     public function user()
