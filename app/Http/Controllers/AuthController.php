@@ -23,7 +23,7 @@ class AuthController extends BaseController
             'iss' => "event-manager",
             'sub' => $user->id,
             'iat' => time(),
-            'exp' => time() + 60*60
+            'exp' => time() + 3600*60
         ];
         return JWT::encode($payload, env('JWT_SECRET'));
     }

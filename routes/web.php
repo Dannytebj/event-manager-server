@@ -19,7 +19,10 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api/v1'], function ($router) {
    $router->post('/users/register', 'UsersController@register');
    $router->post('/users/login', 'AuthController@authenticate');
+   $router->get('/event/all', 'EventsController@getAllEvents');
+   $router->get('/event/{centerId}', 'EventsController@getCenterEvents');
 });
 $router->group(['middleware' => 'jwt.auth', 'prefix' => 'api/v1'], function ($router) {
+    $router->post('/event/create', 'EventsController@createEvent');
     $router->post('/admin/center/create', 'CentersController@createCenter');
 });

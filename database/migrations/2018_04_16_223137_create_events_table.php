@@ -17,6 +17,7 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('description');
+            $table->timestamp('date');
             $table->integer('user_id')->references('id')->on('users');
             $table->integer('center_id')->references('id')->on('centers');
             $table->timestamps();

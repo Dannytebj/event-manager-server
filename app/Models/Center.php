@@ -27,5 +27,9 @@ class Center extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+    public function events()
+    {
+        return $this->belongsToMany('App\Models\Events');
+    }
 
 }
