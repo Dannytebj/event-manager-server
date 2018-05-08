@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Center extends Model
+class Events extends Model
 {
 
 
@@ -14,23 +14,24 @@ class Center extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'address', 'capacity', 'owner_id', 'description'
+        'title', 'description', 'center_id', 'start_date', 'end_date','user_id'
     ];
-
     public static $rules = [
-        'name' => 'required|string',
-        'address' => 'required|string',
+        'title' => 'required|string',
         'description' => 'required|string',
-        'capacity' => 'required|integer',
+        'start_date' => 'required|string',
+        'end_date' => 'required|string',
+        'center_id' => 'required|string',
     ];
 
     public function user()
     {
         return $this->belongsTo('App\Models\User');
     }
-    public function events()
+
+    public function center()
     {
-        return $this->belongsToMany('App\Models\Events');
+        return $this->belongsTo('App\Models\Center', 'center_id');
     }
 
 }
