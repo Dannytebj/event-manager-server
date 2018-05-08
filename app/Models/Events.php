@@ -14,11 +14,13 @@ class Events extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'center_id', 'date', 'user_id'
+        'title', 'description', 'center_id', 'start_date', 'end_date','user_id'
     ];
     public static $rules = [
         'title' => 'required|string',
         'description' => 'required|string',
+        'start_date' => 'required|string',
+        'end_date' => 'required|string',
         'center_id' => 'required|string',
     ];
 

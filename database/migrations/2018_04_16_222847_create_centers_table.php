@@ -17,6 +17,7 @@ class CreateCentersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('address');
+            $table->text('description');
             $table->string('capacity');
             $table->string('owner_id')->references('id')->on('users');
             $table->string('status')->default(1);
