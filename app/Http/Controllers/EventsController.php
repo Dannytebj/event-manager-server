@@ -62,7 +62,8 @@ class EventsController extends Controller
                 'title' => $request->input('title'),
                 'description' => $request->input('description'),
                 'center_id' => $centerId,
-                'date' => Carbon::now(), // will update this later
+                'start_date' => Carbon::now(), // will update this later
+                'end_date' => Carbon::now(),
                 'user_id' => $request->auth->id
             ]
         );
@@ -71,6 +72,32 @@ class EventsController extends Controller
             'event' => $eventDetails
         ], 201);
 
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateEvent(Request $request)
+    {
+        $eventId = $request->input('eventId');
+        $event = Events::find(intval($eventId));
+        if (!$event) {
+            return response()->json([
+                'error' => 'This event does not exist'
+            ], '404');
+        }
+        if($event->user->user_id === $request->auth->id) {
+            return response()->json([
+                'error' => 'You do not have permission to edit this event'
+            ], '401');
+        }
+        $event->update($request->input());
+
+        return response()->json([
+            'message' => 'updated successfully.',
+            'event' => $event
+        ], '200');
     }
 
 }
