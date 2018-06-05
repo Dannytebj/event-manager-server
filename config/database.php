@@ -10,8 +10,8 @@ $database = substr($url["path"], 1);
 return [
     ...
     'connections' => [
-        'mysql' => [
-            'driver' => 'mysql',
+        'pgsql' => [
+            'driver' => 'pgsql',
             'host' => env('DB_HOST', $host),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', $database),
@@ -24,5 +24,3 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-      ],
-    ];
